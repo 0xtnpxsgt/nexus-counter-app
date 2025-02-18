@@ -36,9 +36,6 @@ npm install
 ## 2. Deploy the smart contract:
 ```bash
 cd contracts
-```
-
-```bash
 nano .env
 ```
 - Paste this with your own details | crtl X + Y enter to save.
