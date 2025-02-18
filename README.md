@@ -76,7 +76,6 @@ cd frontend
 ```bash
 nano /root/nexus-counter-app/frontend/src/app/page.tsx
 ```
-- const CONTRACT_ADDRESS = 'your_deployed_contract_address' // You'll need to update this after deploying to
 
 1. Start the NextJS development server:
 
