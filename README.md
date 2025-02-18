@@ -22,9 +22,9 @@ This project demonstrates a basic integration between a web application and the 
 
 To interact with the Nexus testnet, you'll need testnet NEX tokens for gas fees. These can be obtained from the Nexus Testnet Faucet at https://hub.nexus.xyz.
 
-## Installation & Setup
+# Installation & Setup
 
-1. Clone and install dependencies:
+## 1. Clone and install dependencies:
 ```bash
 git clone https://github.com/nexus-xyz/nexus-counter-app.git
 cd nexus-counter-app
@@ -33,7 +33,7 @@ cd nexus-counter-app
 npm install
 ```
 
-2. Deploy the smart contract:
+## 2. Deploy the smart contract:
 ```bash
 cd contracts
 ```
@@ -53,13 +53,13 @@ NEXUS_RPC_URL=https://rpc.nexus.xyz/http
 BLOCK_EXPLORER_API_KEY=your_api_key_here 
 ```
 
-2-1. Deploy:
+## 2-1. Deploy:
 ```bash
 npx hardhat run scripts/deploy.ts --network nexus
 ```
 - after successful deployement copy the Contract Address
 
-3. Configure the frontend:
+## 3. Configure the frontend:
 Configure the frontend to use the deployed contract address on Nexus.
 
 Modify the `frontend/src/app/page.tsx` file to use the deployed contract address:
@@ -72,6 +72,7 @@ const CONTRACT_ADDRESS = 'your_deployed_contract_address' // You'll need to upda
 cd ..
 cd frontend
 ```
+## To Edit page.tsx run command
 ```bash
 nano /root/nexus-counter-app/frontend/src/app/page.tsx
 ```
