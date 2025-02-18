@@ -22,50 +22,42 @@ This project demonstrates a basic integration between a web application and the 
 
 To interact with the Nexus testnet, you'll need testnet NEX tokens for gas fees. These can be obtained from the Nexus Testnet Faucet at https://hub.nexus.xyz.
 
-## Smart Contract Details
-
-The Counter smart contract (`contracts/src/Counter.sol`) implements:
-- A private counter variable
-- An increment function that adds 1 to the counter
-- A getter function to read the current count
-- An event emission after each increment
-
-The current Counter contract is deployed to the Nexus testnet at address `0x6DDc7dd77CbeeA3445b70CB04E0244BBa245e011`. See the code below for the contract's source code.
-
-```solidity
-// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
-
-contract Counter {
-    uint256 private count;
-    
-    event CountIncremented(uint256 newCount);
-    
-    function increment() public {
-        count += 1;
-        emit CountIncremented(count);
-    }
-    
-    function getCount() public view returns (uint256) {
-        return count;
-    }
-}
-```
-
 ## Installation & Setup
 
 1. Clone and install dependencies:
 ```bash
-git clone <this-repo-url>
-cd your-repo
+git clone https://github.com/nexus-xyz/nexus-counter-app.git
+cd nexus-counter-app
+```
+```bash
 npm install
 ```
 
 2. Deploy the smart contract:
 ```bash
 cd contracts
+```
+
+```bash
+nano .env
+```
+- Paste this with your own details | crtl X + Y enter to save.
+```
+# Your wallet private key (without 0x prefix)
+PRIVATE_KEY=your_private_key_here
+
+# Nexus RPC URL
+NEXUS_RPC_URL=https://rpc.nexus.xyz/http
+
+# Optional: Block explorer API key if you want to verify contracts
+BLOCK_EXPLORER_API_KEY=your_api_key_here 
+```
+
+2-1. Deploy:
+```bash
 npx hardhat run scripts/deploy.ts --network nexus
 ```
+- after successful deployement copy the Contract Address
 
 3. Configure the frontend:
 Configure the frontend to use the deployed contract address on Nexus.
@@ -76,10 +68,22 @@ Modify the `frontend/src/app/page.tsx` file to use the deployed contract address
 const CONTRACT_ADDRESS = 'your_deployed_contract_address' // You'll need to update this after deploying to Nexus
 ```
 
+```bash
+cd ..
+cd frontend
+```
+```bash
+nano /root/nexus-counter-app/frontend/src/app/page.tsx
+```
+- const CONTRACT_ADDRESS = 'your_deployed_contract_address' // You'll need to update this after deploying to
+
 1. Start the NextJS development server:
 
 ```bash
-cd frontend
+screen -S nexus 
+```
+
+```bash
 npm run dev
 ```
 
