@@ -30,28 +30,6 @@ The Counter smart contract (`contracts/src/Counter.sol`) implements:
 - A getter function to read the current count
 - An event emission after each increment
 
-The current Counter contract is deployed to the Nexus testnet at address `0x6DDc7dd77CbeeA3445b70CB04E0244BBa245e011`. See the code below for the contract's source code.
-
-```solidity
-// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
-
-contract Counter {
-    uint256 private count;
-    
-    event CountIncremented(uint256 newCount);
-    
-    function increment() public {
-        count += 1;
-        emit CountIncremented(count);
-    }
-    
-    function getCount() public view returns (uint256) {
-        return count;
-    }
-}
-```
-
 ## Installation & Setup
 
 1. Clone and install dependencies:
@@ -64,7 +42,27 @@ npm install
 2. Deploy the smart contract:
 ```bash
 cd contracts
+nano .env
+```
+- edit & paste with your own details
+```
+# Your wallet private key (without 0x prefix)
+PRIVATE_KEY=your_private_key_here
+
+# Nexus RPC URL
+NEXUS_RPC_URL=https://rpc.nexus.xyz/http
+
+# Optional: Block explorer API key if you want to verify contracts
+BLOCK_EXPLORER_API_KEY=your_api_key_here 
+```
+
+```bash
 npx hardhat run scripts/deploy.ts --network nexus
+```
+- Copy Deployment Contract Address
+
+```bash
+cd ..
 ```
 
 3. Configure the frontend:
@@ -76,10 +74,21 @@ Modify the `frontend/src/app/page.tsx` file to use the deployed contract address
 const CONTRACT_ADDRESS = 'your_deployed_contract_address' // You'll need to update this after deploying to Nexus
 ```
 
+- To modify page.tsx
+```bash
+nano /root/nexus-counter-app/frontend/src/app/page.tsx
+```
+
 1. Start the NextJS development server:
 
 ```bash
 cd frontend
+```
+```bash
+screen -S nexus 
+```
+
+```bash
 npm run dev
 ```
 
